@@ -53,6 +53,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "browserslist": [
     "android >= 5",
     "ios >= 10"
