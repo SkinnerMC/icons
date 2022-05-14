@@ -17,7 +17,7 @@
   "repository": "https://github.com/SkinnerMC/icons",
   "homepage": "https://skinnermc.github.io/icons/",
   "author": "MrZillaGold <Egor Pronin | mrzillagold@gmail.com>",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "dependencies": {
     "svg-baker-runtime": "^1.4.7"
   },
