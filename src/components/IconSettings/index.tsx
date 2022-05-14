@@ -1,11 +1,11 @@
-import React, { PropsWithChildren } from 'react';
+import { createContext, useMemo, PropsWithChildren } from 'react';
 
 export interface IIconSettings {
     classPrefix?: string;
     globalClasses?: boolean;
 }
 
-export const IconSettingsContext = React.createContext<IIconSettings>({
+export const IconSettingsContext = createContext<IIconSettings>({
     classPrefix: '',
     globalClasses: true
 });
@@ -13,7 +13,7 @@ export const IconSettingsContext = React.createContext<IIconSettings>({
 export function IconSettings({ children, ...settings }: PropsWithChildren<IIconSettings>): JSX.Element {
     const { classPrefix, globalClasses } = settings;
 
-    const context = React.useMemo(() => (
+    const context = useMemo(() => (
         settings
     ), [classPrefix, globalClasses]);
 
