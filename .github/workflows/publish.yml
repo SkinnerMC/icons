@@ -45,7 +45,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_TOKEN }}
 
       - name: Creating doc
-        run: yarn docs
+        run: npm run-script docs
 
       - name: Publishing doc
         uses: JamesIves/github-pages-deploy-action@3.7.1
