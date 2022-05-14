@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "declaration": true
+  },
+  "include": [
+    "ts/**/*.ts",
+    "ts/**/*.tsx",
+    "types/*.ts"
+  ]
+}

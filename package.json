@@ -1,0 +1,60 @@
+{
+  "name": "@skinner/icons",
+  "version": "1.0.1",
+  "description": "Skinner icons pack for React",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "typings": "dist/typings/index.d.ts",
+  "scripts": {
+    "docs": "node --experimental-modules --experimental-json-modules --unhandled-rejections=warn --es-module-specifier-resolution=node scripts/docs",
+    "build": "npm run-script build:icons",
+    "build:icons": "node --experimental-modules --experimental-json-modules --unhandled-rejections=warn --es-module-specifier-resolution=node scripts/icons.js && npm run-script build:all && npm run-script build:icons-tsc",
+    "build:icons-tsc": "cross-env NODE_ENV=production tsc --project tsconfig.dist.json --outDir dist/typings",
+    "build:cjs": "swc ts/ -d dist/ -C jsc.target=es5 -C module.type=commonjs",
+    "build:esm": "swc ts/ -d dist/esm/ -C jsc.target=es5",
+    "build:all": "npm run-script build:esm && npm run-script build:cjs"
+  },
+  "repository": "https://github.com/SkinnerMC/icons",
+  "homepage": "https://skinnermc.github.io/icons/",
+  "author": "MrZillaGold <Egor Pronin | mrzillagold@gmail.com>",
+  "license": "SEE LICENSE IN LICENSE",
+  "dependencies": {
+    "svg-baker-runtime": "^1.4.7"
+  },
+  "devDependencies": {
+    "@swc/cli": "^0.1.57",
+    "@swc/core": "^1.2.177",
+    "@types/react": "^18.0.9",
+    "@types/svg-baker-runtime": "^1.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "@typescript-eslint/parser": "^5.22.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.1",
+    "eslint": "^8.15.0",
+    "eslint-plugin-react": "^7.29.4",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "react": "^18.1.0",
+    "react-color": "^2.19.3",
+    "react-dom": "^18.1.0",
+    "style-loader": "^3.3.1",
+    "svg-baker": "^1.7.0",
+    "svgo": "^2.8.0",
+    "swc-loader": "^0.2.0",
+    "typescript": "^4.6.4",
+    "webpack": "^5.72.1",
+    "webpack-merge": "^5.8.0"
+  },
+  "peerDependencies": {
+    "@types/react": "^17.0.0",
+    "react": "^17.0.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "browserslist": [
+    "android >= 5",
+    "ios >= 10"
+  ]
+}

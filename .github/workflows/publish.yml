@@ -1,0 +1,55 @@
+name: 'Publish'
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'version (without v)'
+        required: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.DEVTOOLS_GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+          always-auth: true
+          registry-url: 'https://registry.npmjs.org'
+
+      - run: npm ci
+
+      - run: npm run-script build:icons
+
+      - name: Set Git credentials
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Action"
+
+      - run: npm version --new-version ${{ github.event.inputs.version }} --no-commit-hooks
+
+      - name: Pushing changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.DEVTOOLS_GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
+      - name: Publishing release
+        run: npm publish --non-interactive
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_TOKEN }}
+
+      - name: Creating doc
+        run: yarn docs
+
+      - name: Publishing doc
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.DEVTOOLS_GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: docs
