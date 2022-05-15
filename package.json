@@ -58,5 +58,6 @@
   "browserslist": [
     "android >= 5",
     "ios >= 10"
-  ]
+  ],
+  "sideEffects": false
 }
