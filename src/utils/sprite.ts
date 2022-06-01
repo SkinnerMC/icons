@@ -16,6 +16,8 @@ if (canUseDOM) {
     });
 
     const mountSptite = () => {
+        document.removeEventListener('DOMContentLoaded', mountSptite);
+        
         const spriteNode = document.getElementById(spriteId);
 
         if (spriteNode) {
